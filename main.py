@@ -181,10 +181,16 @@ async def main():
 
         elif cmd == "/del_bot":
             try:
-                username = cmd_parts[1].replace("@", "")
-                SIGN_IN_BOTS = [b for b in SIGN_IN_BOTS if b["bot_username"] != username]
-                save_data(DATA_PATH, SIGN_IN_BOTS)
-                await event.reply(f"🗑️ **已删除**: @{username}")
+                # 强化版删除逻辑
+                target_user = cmd_parts[1].replace("@", "").strip().lower()
+                before_count = len(SIGN_IN_BOTS)
+                SIGN_IN_BOTS = [b for b in SIGN_IN_BOTS if b["bot_username"].lower() != target_user]
+                
+                if len(SIGN_IN_BOTS) < before_count:
+                    save_data(DATA_PATH, SIGN_IN_BOTS) # 关键点：保存到磁盘
+                    await event.reply(f"🗑️ **已成功删除**: @{target_user}")
+                else:
+                    await event.reply(f"ℹ️ **未找到匹配项**: @{target_user}\n请发送 `/list` 检查用户名。")
             except:
                 await event.reply("❌ 格式: `/del_bot @用户名`")
 
@@ -218,6 +224,7 @@ async def main():
         while True:
             now = datetime.utcnow()
             if (now.hour + 8) % 24 in [0, 12] and now.minute == 5:
+                # 每次执行自动签到前，从硬盘重新读一次列表，确保同步
                 current_list = load_data(DATA_PATH, [])
                 if await user_client.is_user_authorized():
                     for b in current_list:

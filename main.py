@@ -8,7 +8,7 @@ from telethon import TelegramClient, events
 # ============ 1. 核心配置 ============
 API_ID = 2040
 API_HASH = "b18441a1ff607e10a989891a5462e627"
-BOT_API_TOKEN = "8417331227:AAESrsOPgEDMeu7NHgLMgoZrynkxoafBLBY"
+BOT_API_TOKEN = "8505048236:AAFHPC3448Gti60whSAC9mak_oKzd7BN1eY"
 ADMIN_ID = 6649617045  # 确保这里是你的数值 ID
 
 # 签到机器人列表

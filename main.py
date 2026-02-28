@@ -8,7 +8,7 @@ from telethon.errors import SessionPasswordNeededError
 # ============ 1. 基础配置 ============
 API_ID = 2040 
 API_HASH = "b18441a1ff607e10a989891a5462e627"
-BOT_TOKEN = "7881731610:AAGZ4jIlDqCn8pLT1ubdlpWdtRNJsg3Qe00"
+BOT_TOKEN = "8505048236:AAFHPC3448Gti60whSAC9mak_oKzd7BN1eY"
 ADMIN_ID = 6649617045  # 你的ID,默认最高权限
 
 # ✨ 设备伪装配置
